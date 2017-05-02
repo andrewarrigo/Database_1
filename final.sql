@@ -1,3 +1,6 @@
+--Andrew Arrigo
+--Final Project
+
 DROP TABLE IF EXISTS Vehicle_Records;
 DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Card_Info;
