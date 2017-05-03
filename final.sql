@@ -422,6 +422,26 @@ WHERE Driver.userID = vehicle_records.userID
 Create role driver;
 Create role passenger;
 
+
+--stored procedure
+CREATE OR REPLACE FUNCTION carTypeFor(text, refcursor) RETURNS refcursor AS 
+$$
+DECLARE
+  type text                :=$1;
+  resultset refcursor :=$2;
+BEGIN OPEN resultset for
+	select make, vid
+	from Vehicle
+	where vehicle.make = 'Cadillac';
+	return resultset;
+end;
+$$
+language plpgsql;
+
+select carTypeFor ('Cadillac', 'results');
+Fetch all from results;
+
+
 -- Admin
 Grant all on all tables in schema public to admin
 
@@ -434,9 +454,3 @@ Grant insert, update on Driver_Accounts to driver
 Grant insert, update on vehicle to driver
 Grant insert, update on Pickup_Request to driver
 Grant insert, update on Ride_Request to driver
-
-
-
-
-
-
